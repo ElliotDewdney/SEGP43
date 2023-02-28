@@ -1,1 +1,7 @@
 target/
+
+#Elliots ignores
+*.nix
+.classpath
+.project
+.settings/
