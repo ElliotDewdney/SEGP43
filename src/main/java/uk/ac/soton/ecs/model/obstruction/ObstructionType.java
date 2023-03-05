@@ -1,13 +1,20 @@
 package uk.ac.soton.ecs.model.obstruction;
 
+import org.la4j.LinearAlgebra;
 import org.la4j.LinearAlgebra.InverterFactory;
 import org.la4j.Matrix;
 import org.la4j.matrix.dense.Basic2DMatrix;
+import org.la4j.vector.DenseVector;
 
 public abstract class ObstructionType {
+
+	public abstract String getName();
+	public abstract String getDescription();
+	public abstract String getColour();
+	
 	
 	// the external corners of the object (not including any concave vertexes)
-	private Vertex[] localVertices; 
+	private Vertex[] localVertices;
 	
 	// the origin of the OB, either in UnitSpace.GLOBAL or RUNWAYUNIT
 	private Vertex obstructionOrigin;
@@ -55,11 +62,8 @@ public abstract class ObstructionType {
 		}
 		
 		public Vertex mult(Vertex vertex) {
-			double tx = vertex.getX();
-			double ty = vertex.getY();
-			double tz = vertex.getZ();
-			
-			return new Vertex(nx, ny, nz, to);
+			org.la4j.Vector tv = DenseVector.fromArray(new double[] {vertex.getX(), vertex.getY(), vertex.getZ()}).apply(LinearAlgebra.OO_PLACE_VECTOR_BY_MATRIX_MULTIPLICATION, conv);
+			return new Vertex(tv.get(0), tv.get(1), tv.get(2), to);
 		}
 		
 		public VertexMatrix getInverse() {
@@ -129,6 +133,9 @@ public abstract class ObstructionType {
 		
 	}
 	
+	public ObstructionType(Vertex[] localVertices) {
+		this.localVertices = localVertices;
+	}
 	
 	public Vertex convert(Vertex vertex, UnitSpace unit) {
 		

@@ -11,15 +11,14 @@ import uk.ac.soton.ecs.model.obstruction.Prerequisite;
 @ObstructionFactoryType(obstructionName = "Vehicle")
 public class VehicleFactory implements ObstructionFactory{
 	
-	private float height;
-	private float deapth;
-	private float width;
-	private float bearing;
+	private double height;
+	private double length;
+	private double width;
+	private double bearing;
 
 	@Override
 	public ObstructionType createObstruction() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Vehicle(length, width, height, bearing);
 	}
 
 	@Override
@@ -32,9 +31,9 @@ public class VehicleFactory implements ObstructionFactory{
 			return true;
 		})));
 		
-		prerequisites.add(new Prerequisite<Float>("set Deapth : ", (f -> {
+		prerequisites.add(new Prerequisite<Float>("set Length : ", (f -> {
 			if(f < 0 || f > 1000) return false;
-			this.deapth = f;
+			this.length = f;
 			return true;
 		})));
 		
