@@ -7,8 +7,8 @@ import org.junit.Test;
 public class ObstructionSingletonTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testGetInstance() {
+		assertEquals("getInstance should return a instance of the class", ObstructionSingleton.getInstance(), ObstructionSingleton.class);
 	}
 
 }
