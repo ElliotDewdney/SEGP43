@@ -4,7 +4,13 @@ import uk.ac.soton.ecs.model.obstruction.ObstructionType;
 
 public class Vehicle extends ObstructionType {
 	
-	
+	/**
+	 * constructor for creating a Vehicle Obstruction
+	 * @param length the length of the object
+	 * @param width the width of the object
+	 * @param height the height of the object
+	 * @param bearing the bearing the object is facing
+	 */
 	public Vehicle(double length, double width, double height, double bearing) {
 		super(new Vertex[8]);
 		double[] ls = new double[] {-(length/2), (length/2)};
@@ -16,16 +22,25 @@ public class Vehicle extends ObstructionType {
 		}
 	}
 	
+	/**
+	 * gets a human readable name for the ui
+	 */
 	@Override
 	public String getName() {
 		return "Vehicle";
 	}
-
+	
+	/**
+	 * get a human readable description for the ui 
+	 */
 	@Override
 	public String getDescription() {
 		return "A broken down vehicle obstructiong the runway";
 	}
-
+	
+	/**
+	 * gets a colour for the ui
+	 */
 	@Override
 	public String getColour() {
 		return "#000000";

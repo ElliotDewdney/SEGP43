@@ -7,6 +7,11 @@ import java.util.Set;
 import org.reflections.Reflections;
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * 
+ * @author Elliot Dewdney
+ *
+ */
 public class ObstructionSingleton {
 	
 	private static ObstructionSingleton instance = null;
